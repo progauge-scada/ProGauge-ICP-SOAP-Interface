@@ -1,8 +1,8 @@
 ProGauge ICP SOAP Interface:
 
-    Author:	            ProGauge Technologies Inc.
-    Website:	        http://www.progauge.us/datasoftware.php
-    Email:	            scada@progauge.us
+    Author:             ProGauge Technologies Inc.
+    Website:            http://www.progauge.us/datasoftware.php
+    Email:              scada@progauge.us
     Code repository:    https://github.com/progauge-scada/ProGauge-ICP-SOAP-Interface
     Current version:    1.0
 
