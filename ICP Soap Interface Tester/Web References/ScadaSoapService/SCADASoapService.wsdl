@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="http://progauge.scada.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SCADASoapService" targetNamespace="http://progauge.scada.com" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://www.progaugescada.com/soap?xsd=1" namespace="http://progauge.scada.com" />
+    </xsd:schema>
+  </types>
+  <message name="getEquipmentList">
+    <part name="parameters" element="tns:getEquipmentList" />
+  </message>
+  <message name="getEquipmentListResponse">
+    <part name="parameters" element="tns:getEquipmentListResponse" />
+  </message>
+  <message name="DatabaseDownException">
+    <part name="fault" element="tns:DatabaseDownException" />
+  </message>
+  <message name="getTagList">
+    <part name="parameters" element="tns:getTagList" />
+  </message>
+  <message name="getTagListResponse">
+    <part name="parameters" element="tns:getTagListResponse" />
+  </message>
+  <message name="getTagValueAsOf">
+    <part name="parameters" element="tns:getTagValueAsOf" />
+  </message>
+  <message name="getTagValueAsOfResponse">
+    <part name="parameters" element="tns:getTagValueAsOfResponse" />
+  </message>
+  <message name="InvalidTagNameException">
+    <part name="fault" element="tns:InvalidTagNameException" />
+  </message>
+  <message name="getTagValuesAsOf">
+    <part name="parameters" element="tns:getTagValuesAsOf" />
+  </message>
+  <message name="getTagValuesAsOfResponse">
+    <part name="parameters" element="tns:getTagValuesAsOfResponse" />
+  </message>
+  <message name="getTagValueLatest">
+    <part name="parameters" element="tns:getTagValueLatest" />
+  </message>
+  <message name="getTagValueLatestResponse">
+    <part name="parameters" element="tns:getTagValueLatestResponse" />
+  </message>
+  <message name="getTagValuesLatest">
+    <part name="parameters" element="tns:getTagValuesLatest" />
+  </message>
+  <message name="getTagValuesLatestResponse">
+    <part name="parameters" element="tns:getTagValuesLatestResponse" />
+  </message>
+  <message name="getVersion">
+    <part name="parameters" element="tns:getVersion" />
+  </message>
+  <message name="getVersionResponse">
+    <part name="parameters" element="tns:getVersionResponse" />
+  </message>
+  <portType name="SCADASoapService">
+    <operation name="getEquipmentList">
+      <input message="tns:getEquipmentList" />
+      <output message="tns:getEquipmentListResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+    </operation>
+    <operation name="getTagList">
+      <input message="tns:getTagList" />
+      <output message="tns:getTagListResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+    </operation>
+    <operation name="getTagValueAsOf">
+      <input message="tns:getTagValueAsOf" />
+      <output message="tns:getTagValueAsOfResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
+    </operation>
+    <operation name="getTagValuesAsOf">
+      <input message="tns:getTagValuesAsOf" />
+      <output message="tns:getTagValuesAsOfResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
+    </operation>
+    <operation name="getTagValueLatest">
+      <input message="tns:getTagValueLatest" />
+      <output message="tns:getTagValueLatestResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
+    </operation>
+    <operation name="getTagValuesLatest">
+      <input message="tns:getTagValuesLatest" />
+      <output message="tns:getTagValuesLatestResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
+    </operation>
+    <operation name="getVersion">
+      <input message="tns:getVersion" />
+      <output message="tns:getVersionResponse" />
+    </operation>
+  </portType>
+  <binding name="SCADASoapServicePortBinding" type="tns:SCADASoapService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getEquipmentList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTagList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTagValueAsOf">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+      <fault name="InvalidTagNameException">
+        <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTagValuesAsOf">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+      <fault name="InvalidTagNameException">
+        <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTagValueLatest">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+      <fault name="InvalidTagNameException">
+        <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTagValuesLatest">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+      <fault name="InvalidTagNameException">
+        <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getVersion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="SCADASoapService">
+    <port name="SCADASoapServicePort" binding="tns:SCADASoapServicePortBinding">
+      <soap:address location="http://www.progaugescada.com/soap" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://progauge.scada.com" targetNamespace="http://progauge.scada.com" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DatabaseDownException" type="tns:DatabaseDownException" />
+  <xs:element name="InvalidTagNameException" type="tns:InvalidTagNameException" />
+  <xs:element name="getEquipmentList" type="tns:getEquipmentList" />
+  <xs:element name="getEquipmentListResponse" type="tns:getEquipmentListResponse" />
+  <xs:element name="getTagList" type="tns:getTagList" />
+  <xs:element name="getTagListResponse" type="tns:getTagListResponse" />
+  <xs:element name="getTagValueAsOf" type="tns:getTagValueAsOf" />
+  <xs:element name="getTagValueAsOfResponse" type="tns:getTagValueAsOfResponse" />
+  <xs:element name="getTagValueLatest" type="tns:getTagValueLatest" />
+  <xs:element name="getTagValueLatestResponse" type="tns:getTagValueLatestResponse" />
+  <xs:element name="getTagValuesAsOf" type="tns:getTagValuesAsOf" />
+  <xs:element name="getTagValuesAsOfResponse" type="tns:getTagValuesAsOfResponse" />
+  <xs:element name="getTagValuesLatest" type="tns:getTagValuesLatest" />
+  <xs:element name="getTagValuesLatestResponse" type="tns:getTagValuesLatestResponse" />
+  <xs:element name="getVersion" type="tns:getVersion" />
+  <xs:element name="getVersionResponse" type="tns:getVersionResponse" />
+  <xs:complexType name="getTagValueAsOf">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" name="tagName" type="xs:string" />
+      <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagValueAsOfResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tagValue" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DatabaseDownException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InvalidTagNameException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagValuesAsOf">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagNames" type="xs:string" />
+      <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagValuesAsOfResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagValues" type="tns:tagItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tagItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="value" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tags" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getEquipmentList">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getEquipmentListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="equipment" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagValuesLatest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagNames" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagValuesLatestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagValues" type="tns:tagItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getVersion">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getVersionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="version" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagValueLatest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" name="tagName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagValueLatestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tagValue" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,8 @@
+# Binary files
+/ICP Soap Interface Tester/bin
+/ICP Soap Interface Tester/obj
+
+# Global exclusions
+*.suo
+*.log*
+Thumbs.db
