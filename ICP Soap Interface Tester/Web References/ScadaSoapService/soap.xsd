@@ -4,6 +4,8 @@
   <xs:element name="InvalidTagNameException" type="tns:InvalidTagNameException" />
   <xs:element name="getEquipmentList" type="tns:getEquipmentList" />
   <xs:element name="getEquipmentListResponse" type="tns:getEquipmentListResponse" />
+  <xs:element name="getSystemTime" type="tns:getSystemTime" />
+  <xs:element name="getSystemTimeResponse" type="tns:getSystemTimeResponse" />
   <xs:element name="getTagList" type="tns:getTagList" />
   <xs:element name="getTagListResponse" type="tns:getTagListResponse" />
   <xs:element name="getTagValueAsOf" type="tns:getTagValueAsOf" />
@@ -25,7 +27,16 @@
   </xs:complexType>
   <xs:complexType name="getTagValueAsOfResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="tagValue" type="xs:anyType" />
+      <xs:element minOccurs="0" name="tag" type="tns:tagItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tagItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataType" type="tns:dataType" />
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="timestamp" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="value" type="xs:anyType" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DatabaseDownException">
@@ -48,12 +59,6 @@
   <xs:complexType name="getTagValuesAsOfResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="tagValues" type="tns:tagItem" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="tagItem">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="name" type="xs:string" />
-      <xs:element minOccurs="0" name="value" type="xs:anyType" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getTagList">
@@ -85,6 +90,14 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="tagValues" type="tns:tagItem" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="getSystemTime">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getSystemTimeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="systemTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="getVersion">
     <xs:sequence />
   </xs:complexType>
@@ -101,7 +114,16 @@
   </xs:complexType>
   <xs:complexType name="getTagValueLatestResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="tagValue" type="xs:anyType" />
+      <xs:element minOccurs="0" name="tagValue" type="tns:tagItem" />
     </xs:sequence>
   </xs:complexType>
+  <xs:simpleType name="dataType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STRING" />
+      <xs:enumeration value="INTEGER" />
+      <xs:enumeration value="REAL" />
+      <xs:enumeration value="BOOLEAN" />
+      <xs:enumeration value="DATE" />
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>

@@ -37,6 +37,10 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.tagDataTypeLabel = new System.Windows.Forms.Label();
+            this.tagDataTypeTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tagTimestampTextBox = new System.Windows.Forms.TextBox();
             this.equipmentListGroupBox.SuspendLayout();
             this.tagListGroupBox.SuspendLayout();
             this.tagValueGroupBox.SuspendLayout();
@@ -55,7 +59,7 @@
             // 
             // equipmentList
             // 
-            this.equipmentList.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.equipmentList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.equipmentList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.equipmentList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.equipmentList.FormattingEnabled = true;
@@ -68,7 +72,7 @@
             // 
             // equipmentListGroupBox
             // 
-            this.equipmentListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.equipmentListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.equipmentListGroupBox.Controls.Add(this.equipmentListButton);
             this.equipmentListGroupBox.Controls.Add(this.equipmentList);
@@ -81,7 +85,7 @@
             // 
             // tagListGroupBox
             // 
-            this.tagListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.tagListGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tagListGroupBox.Controls.Add(this.tagList);
             this.tagListGroupBox.Controls.Add(this.tagListButton);
@@ -94,7 +98,7 @@
             // 
             // tagList
             // 
-            this.tagList.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tagList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tagList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tagList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.tagList.FormattingEnabled = true;
@@ -117,25 +121,29 @@
             // 
             // tagValueGroupBox
             // 
-            this.tagValueGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.tagValueGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.tagValueGroupBox.Controls.Add(this.label1);
+            this.tagValueGroupBox.Controls.Add(this.tagTimestampTextBox);
+            this.tagValueGroupBox.Controls.Add(this.tagDataTypeLabel);
+            this.tagValueGroupBox.Controls.Add(this.tagDataTypeTextBox);
             this.tagValueGroupBox.Controls.Add(this.tagValueLabel);
             this.tagValueGroupBox.Controls.Add(this.tagValueDatePicker);
             this.tagValueGroupBox.Controls.Add(this.tagValueTextBox);
             this.tagValueGroupBox.Controls.Add(this.tagValueButton);
             this.tagValueGroupBox.Location = new System.Drawing.Point(12, 127);
             this.tagValueGroupBox.Name = "tagValueGroupBox";
-            this.tagValueGroupBox.Size = new System.Drawing.Size(394, 74);
+            this.tagValueGroupBox.Size = new System.Drawing.Size(394, 130);
             this.tagValueGroupBox.TabIndex = 4;
             this.tagValueGroupBox.TabStop = false;
             this.tagValueGroupBox.Text = "Tag Value";
             // 
             // tagValueLabel
             // 
-            this.tagValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tagValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tagValueLabel.AutoSize = true;
-            this.tagValueLabel.Location = new System.Drawing.Point(152, 47);
+            this.tagValueLabel.Location = new System.Drawing.Point(152, 106);
             this.tagValueLabel.Name = "tagValueLabel";
             this.tagValueLabel.Size = new System.Drawing.Size(59, 13);
             this.tagValueLabel.TabIndex = 5;
@@ -143,8 +151,8 @@
             // 
             // tagValueDatePicker
             // 
-            this.tagValueDatePicker.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tagValueDatePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.tagValueDatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tagValueDatePicker.CustomFormat = "yyyy-MM-dd hh:mm:ss";
             this.tagValueDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.tagValueDatePicker.Location = new System.Drawing.Point(155, 19);
             this.tagValueDatePicker.Name = "tagValueDatePicker";
@@ -153,9 +161,9 @@
             // 
             // tagValueTextBox
             // 
-            this.tagValueTextBox.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tagValueTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tagValueTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tagValueTextBox.Location = new System.Drawing.Point(217, 45);
+            this.tagValueTextBox.Location = new System.Drawing.Point(217, 104);
             this.tagValueTextBox.Name = "tagValueTextBox";
             this.tagValueTextBox.ReadOnly = true;
             this.tagValueTextBox.Size = new System.Drawing.Size(171, 20);
@@ -176,7 +184,7 @@
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel,
             this.progressBar});
-            this.statusBar.Location = new System.Drawing.Point(0, 204);
+            this.statusBar.Location = new System.Drawing.Point(0, 260);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(418, 22);
             this.statusBar.TabIndex = 5;
@@ -195,11 +203,51 @@
             this.progressBar.Size = new System.Drawing.Size(100, 16);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             // 
+            // tagDataTypeLabel
+            // 
+            this.tagDataTypeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tagDataTypeLabel.AutoSize = true;
+            this.tagDataTypeLabel.Location = new System.Drawing.Point(132, 80);
+            this.tagDataTypeLabel.Name = "tagDataTypeLabel";
+            this.tagDataTypeLabel.Size = new System.Drawing.Size(79, 13);
+            this.tagDataTypeLabel.TabIndex = 7;
+            this.tagDataTypeLabel.Text = "Tag DataType:";
+            // 
+            // tagDataTypeTextBox
+            // 
+            this.tagDataTypeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tagDataTypeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tagDataTypeTextBox.Location = new System.Drawing.Point(217, 78);
+            this.tagDataTypeTextBox.Name = "tagDataTypeTextBox";
+            this.tagDataTypeTextBox.ReadOnly = true;
+            this.tagDataTypeTextBox.Size = new System.Drawing.Size(171, 20);
+            this.tagDataTypeTextBox.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(128, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Tag Timestamp:";
+            // 
+            // tagTimestampTextBox
+            // 
+            this.tagTimestampTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tagTimestampTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tagTimestampTextBox.Location = new System.Drawing.Point(217, 52);
+            this.tagTimestampTextBox.Name = "tagTimestampTextBox";
+            this.tagTimestampTextBox.ReadOnly = true;
+            this.tagTimestampTextBox.Size = new System.Drawing.Size(171, 20);
+            this.tagTimestampTextBox.TabIndex = 8;
+            // 
             // TagValueDemoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 226);
+            this.ClientSize = new System.Drawing.Size(418, 282);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.tagValueGroupBox);
             this.Controls.Add(this.tagListGroupBox);
@@ -235,6 +283,10 @@
         private System.Windows.Forms.ToolStripProgressBar progressBar;
         private System.Windows.Forms.DateTimePicker tagValueDatePicker;
         private System.Windows.Forms.Label tagValueLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tagTimestampTextBox;
+        private System.Windows.Forms.Label tagDataTypeLabel;
+        private System.Windows.Forms.TextBox tagDataTypeTextBox;
     }
 }
 

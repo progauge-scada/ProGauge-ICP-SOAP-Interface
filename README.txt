@@ -4,7 +4,7 @@ ProGauge ICP SOAP Interface:
     Website:            http://www.progauge.us/datasoftware.php
     Email:              scada@progauge.us
     Code repository:    https://github.com/progauge-scada/ProGauge-ICP-SOAP-Interface
-    Current version:    1.0
+    Current version:    1.01
 
 Purpose:
 The ProGauge Intermediate Communication Portal (ICP™) is a robust data collection, storage, and management device. Proprietary drivers allow the ICP™ to integrate with several data aggregation devices and present the data through a web-based human-machine interface (HMI) known as the Operator Interface.
@@ -19,7 +19,7 @@ This software demonstrates the SOAP interface for communicating with a ProGauge 
 * Support for querying Alarms and Events coming soon!
 
 Usage :
-1. Open the Visual Studio 2008 project, "ICP Soap Interface Tester"
+1. Open the Visual Studio 2010 project, "ICP Soap Interface Tester"
 2. Build the project and run (no additional libraries are required)
 3. Use the controls provided in the "Tag Value Demo" form to obtain tag values from the ProGauge/Emerson Flowloop (http://www.scadademo.com)
 4. Use the provided Web Services Description Language file (WSDL) to build your own implementation, adapted to your ProGauge ICP™.

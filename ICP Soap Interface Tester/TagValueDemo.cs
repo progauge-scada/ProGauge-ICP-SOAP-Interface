@@ -115,11 +115,12 @@ namespace ICP_Soap_Interface_Tester {
             DateTime dateTime = this.tagValueDatePicker.Value;
             new Thread(new ThreadStart(delegate {
                 try {
-                    object tagValue = service.getTagValueAsOf(equipmentName, tagName, dateTime, true);
-                    if (tagValue != null) {
+                    tagItem item = service.getTagValueAsOf(equipmentName, tagName, dateTime, true);
+                    if (item != null) {
                         this.Invoke(new ThreadStart(delegate {
-
-                            this.tagValueTextBox.Text = tagValue.ToString();
+                            this.tagTimestampTextBox.Text = item.timestamp.ToString("yyyy-MM-dd hh:mm:ss");
+                            this.tagDataTypeTextBox.Text = item.dataType.ToString();
+                            this.tagValueTextBox.Text = item.value.ToString();
                         }));
                     }
                 } catch (SoapException ex) {
