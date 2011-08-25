@@ -1,9 +1,9 @@
-﻿=ProGauge ICP SOAP Interface=
-Author:             ProGauge Technologies Inc.
-Website:            http://www.progauge.us/datasoftware.php
-Email:              scada@progauge.us
-Code repository:    https://github.com/progauge-scada/ProGauge-ICP-SOAP-Interface
-Current version:    1.02
+=﻿=ProGauge ICP SOAP Interface==
+;Author:             ProGauge Technologies Inc.
+;Website:            http://www.progauge.us/datasoftware.php
+;Email:              scada |at| progauge |dot| us
+;Code repository:    https://github.com/progauge-scada/ProGauge-ICP-SOAP-Interface
+;Current version:    1.02
 
 ==Purpose==
 The ProGauge Intermediate Communication Portal (ICP™) is a robust data collection, storage, and management device. Proprietary drivers allow the ICP™ to integrate with several data aggregation devices and present the data through a web-based human-machine interface (HMI) known as the Operator Interface.
