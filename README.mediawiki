@@ -1,4 +1,4 @@
-=﻿=ProGauge ICP SOAP Interface==
+= ProGauge ICP SOAP Interface =
 ;Author:             ProGauge Technologies Inc.
 ;Website:            http://www.progauge.us/datasoftware.php
 ;Email:              scada |at| progauge |dot| us
