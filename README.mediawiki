@@ -14,7 +14,7 @@ Ordinarily, a ProGauge ICP™ will synchronize its data with the ProGauge Prime�
 ===v1.02===
 * Deprecated the getTagValuesAsOf() and getTagValuesLatest() functions in favor of getTagSetValuesAsOf() and getTagSetValuesLatest(), respectively.
 ** These functions will be kept for backward-compatibility purposes until version 1.05
-* Implemented a new function: getTagAggregateAggregateValues()
+* Implemented a new function: getTagAggregateValues()
 ** Use this function to obtain hourly or daily aggregate data such as point count, sum, and average.
 * Cleaned up the sample client code, and added descriptive tooltips where appropriate.
 * Added the ability to easily switch between ICPs™.
