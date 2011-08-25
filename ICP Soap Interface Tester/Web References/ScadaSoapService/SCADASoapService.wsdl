@@ -20,11 +20,32 @@
   <message name="getSystemTimeResponse">
     <part name="parameters" element="tns:getSystemTimeResponse" />
   </message>
+  <message name="getTagAggregateValues">
+    <part name="parameters" element="tns:getTagAggregateValues" />
+  </message>
+  <message name="getTagAggregateValuesResponse">
+    <part name="parameters" element="tns:getTagAggregateValuesResponse" />
+  </message>
+  <message name="InvalidTagNameException">
+    <part name="fault" element="tns:InvalidTagNameException" />
+  </message>
   <message name="getTagList">
     <part name="parameters" element="tns:getTagList" />
   </message>
   <message name="getTagListResponse">
     <part name="parameters" element="tns:getTagListResponse" />
+  </message>
+  <message name="getTagSetValuesAsOf">
+    <part name="parameters" element="tns:getTagSetValuesAsOf" />
+  </message>
+  <message name="getTagSetValuesAsOfResponse">
+    <part name="parameters" element="tns:getTagSetValuesAsOfResponse" />
+  </message>
+  <message name="getTagSetValuesLatest">
+    <part name="parameters" element="tns:getTagSetValuesLatest" />
+  </message>
+  <message name="getTagSetValuesLatestResponse">
+    <part name="parameters" element="tns:getTagSetValuesLatestResponse" />
   </message>
   <message name="getTagValueAsOf">
     <part name="parameters" element="tns:getTagValueAsOf" />
@@ -32,20 +53,17 @@
   <message name="getTagValueAsOfResponse">
     <part name="parameters" element="tns:getTagValueAsOfResponse" />
   </message>
-  <message name="InvalidTagNameException">
-    <part name="fault" element="tns:InvalidTagNameException" />
+  <message name="getTagValueLatest">
+    <part name="parameters" element="tns:getTagValueLatest" />
+  </message>
+  <message name="getTagValueLatestResponse">
+    <part name="parameters" element="tns:getTagValueLatestResponse" />
   </message>
   <message name="getTagValuesAsOf">
     <part name="parameters" element="tns:getTagValuesAsOf" />
   </message>
   <message name="getTagValuesAsOfResponse">
     <part name="parameters" element="tns:getTagValuesAsOfResponse" />
-  </message>
-  <message name="getTagValueLatest">
-    <part name="parameters" element="tns:getTagValueLatest" />
-  </message>
-  <message name="getTagValueLatestResponse">
-    <part name="parameters" element="tns:getTagValueLatestResponse" />
   </message>
   <message name="getTagValuesLatest">
     <part name="parameters" element="tns:getTagValuesLatest" />
@@ -69,10 +87,28 @@
       <input message="tns:getSystemTime" />
       <output message="tns:getSystemTimeResponse" />
     </operation>
+    <operation name="getTagAggregateValues">
+      <input message="tns:getTagAggregateValues" />
+      <output message="tns:getTagAggregateValuesResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
+    </operation>
     <operation name="getTagList">
       <input message="tns:getTagList" />
       <output message="tns:getTagListResponse" />
       <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+    </operation>
+    <operation name="getTagSetValuesAsOf">
+      <input message="tns:getTagSetValuesAsOf" />
+      <output message="tns:getTagSetValuesAsOfResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
+    </operation>
+    <operation name="getTagSetValuesLatest">
+      <input message="tns:getTagSetValuesLatest" />
+      <output message="tns:getTagSetValuesLatestResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
     </operation>
     <operation name="getTagValueAsOf">
       <input message="tns:getTagValueAsOf" />
@@ -80,15 +116,15 @@
       <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
       <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
     </operation>
-    <operation name="getTagValuesAsOf">
-      <input message="tns:getTagValuesAsOf" />
-      <output message="tns:getTagValuesAsOfResponse" />
-      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
-      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
-    </operation>
     <operation name="getTagValueLatest">
       <input message="tns:getTagValueLatest" />
       <output message="tns:getTagValueLatestResponse" />
+      <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
+      <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
+    </operation>
+    <operation name="getTagValuesAsOf">
+      <input message="tns:getTagValuesAsOf" />
+      <output message="tns:getTagValuesAsOfResponse" />
       <fault name="DatabaseDownException" message="tns:DatabaseDownException" />
       <fault name="InvalidTagNameException" message="tns:InvalidTagNameException" />
     </operation>
@@ -126,6 +162,21 @@
         <soap:body use="literal" />
       </output>
     </operation>
+    <operation name="getTagAggregateValues">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+      <fault name="InvalidTagNameException">
+        <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
+      </fault>
+    </operation>
     <operation name="getTagList">
       <soap:operation soapAction="" />
       <input>
@@ -136,6 +187,36 @@
       </output>
       <fault name="DatabaseDownException">
         <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTagSetValuesAsOf">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+      <fault name="InvalidTagNameException">
+        <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTagSetValuesLatest">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="DatabaseDownException">
+        <soap:fault use="literal" name="DatabaseDownException" namespace="" />
+      </fault>
+      <fault name="InvalidTagNameException">
+        <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
       </fault>
     </operation>
     <operation name="getTagValueAsOf">
@@ -153,7 +234,7 @@
         <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
       </fault>
     </operation>
-    <operation name="getTagValuesAsOf">
+    <operation name="getTagValueLatest">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -168,7 +249,7 @@
         <soap:fault use="literal" name="InvalidTagNameException" namespace="" />
       </fault>
     </operation>
-    <operation name="getTagValueLatest">
+    <operation name="getTagValuesAsOf">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

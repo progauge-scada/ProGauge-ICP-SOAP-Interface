@@ -2,12 +2,20 @@
 <xs:schema xmlns:tns="http://progauge.scada.com" targetNamespace="http://progauge.scada.com" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="DatabaseDownException" type="tns:DatabaseDownException" />
   <xs:element name="InvalidTagNameException" type="tns:InvalidTagNameException" />
+  <xs:element name="TagAggregateItem" type="tns:tagAggregateItem" />
+  <xs:element name="TagItem" type="tns:tagItem" />
   <xs:element name="getEquipmentList" type="tns:getEquipmentList" />
   <xs:element name="getEquipmentListResponse" type="tns:getEquipmentListResponse" />
   <xs:element name="getSystemTime" type="tns:getSystemTime" />
   <xs:element name="getSystemTimeResponse" type="tns:getSystemTimeResponse" />
+  <xs:element name="getTagAggregateValues" type="tns:getTagAggregateValues" />
+  <xs:element name="getTagAggregateValuesResponse" type="tns:getTagAggregateValuesResponse" />
   <xs:element name="getTagList" type="tns:getTagList" />
   <xs:element name="getTagListResponse" type="tns:getTagListResponse" />
+  <xs:element name="getTagSetValuesAsOf" type="tns:getTagSetValuesAsOf" />
+  <xs:element name="getTagSetValuesAsOfResponse" type="tns:getTagSetValuesAsOfResponse" />
+  <xs:element name="getTagSetValuesLatest" type="tns:getTagSetValuesLatest" />
+  <xs:element name="getTagSetValuesLatestResponse" type="tns:getTagSetValuesLatestResponse" />
   <xs:element name="getTagValueAsOf" type="tns:getTagValueAsOf" />
   <xs:element name="getTagValueAsOfResponse" type="tns:getTagValueAsOfResponse" />
   <xs:element name="getTagValueLatest" type="tns:getTagValueLatest" />
@@ -79,6 +87,43 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="equipment" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="getTagSetValuesLatest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagNames" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagSetValuesLatestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagValues" type="tns:tagItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagAggregateValues">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" name="tagName" type="xs:string" />
+      <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="resolution" type="tns:tagAggregateResolution" />
+      <xs:element name="performSlowScan" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagAggregateValuesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagAggregates" type="tns:tagAggregateItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tagAggregateItem">
+    <xs:sequence>
+      <xs:element name="average" type="xs:double" />
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element name="pointCount" type="xs:int" />
+      <xs:element minOccurs="0" name="resolution" type="tns:tagAggregateResolution" />
+      <xs:element name="sum" type="xs:double" />
+      <xs:element minOccurs="0" name="timestamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="getTagValuesLatest">
     <xs:sequence>
       <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
@@ -86,6 +131,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getTagValuesLatestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagValues" type="tns:tagItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagSetValuesAsOf">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipmentName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tagNames" type="xs:string" />
+      <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTagSetValuesAsOfResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="tagValues" type="tns:tagItem" />
     </xs:sequence>
@@ -124,6 +181,12 @@
       <xs:enumeration value="REAL" />
       <xs:enumeration value="BOOLEAN" />
       <xs:enumeration value="DATE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tagAggregateResolution">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HOURLY" />
+      <xs:enumeration value="DAILY" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

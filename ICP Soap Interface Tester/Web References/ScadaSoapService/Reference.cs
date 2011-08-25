@@ -33,7 +33,10 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(getVersion))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(getSystemTimeResponse))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(getSystemTime))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(getTagSetValuesAsOf))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(getTagValuesLatest))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(getTagAggregateValues))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(getTagSetValuesLatest))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(getEquipmentList))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(getTagList))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(getTagValuesAsOf))]
@@ -47,13 +50,19 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
         
         private System.Threading.SendOrPostCallback getSystemTimeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getTagAggregateValuesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback getTagListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getTagSetValuesAsOfOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getTagSetValuesLatestOperationCompleted;
         
         private System.Threading.SendOrPostCallback getTagValueAsOfOperationCompleted;
         
-        private System.Threading.SendOrPostCallback getTagValuesAsOfOperationCompleted;
-        
         private System.Threading.SendOrPostCallback getTagValueLatestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getTagValuesAsOfOperationCompleted;
         
         private System.Threading.SendOrPostCallback getTagValuesLatestOperationCompleted;
         
@@ -104,16 +113,25 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
         public event getSystemTimeCompletedEventHandler getSystemTimeCompleted;
         
         /// <remarks/>
+        public event getTagAggregateValuesCompletedEventHandler getTagAggregateValuesCompleted;
+        
+        /// <remarks/>
         public event getTagListCompletedEventHandler getTagListCompleted;
+        
+        /// <remarks/>
+        public event getTagSetValuesAsOfCompletedEventHandler getTagSetValuesAsOfCompleted;
+        
+        /// <remarks/>
+        public event getTagSetValuesLatestCompletedEventHandler getTagSetValuesLatestCompleted;
         
         /// <remarks/>
         public event getTagValueAsOfCompletedEventHandler getTagValueAsOfCompleted;
         
         /// <remarks/>
-        public event getTagValuesAsOfCompletedEventHandler getTagValuesAsOfCompleted;
+        public event getTagValueLatestCompletedEventHandler getTagValueLatestCompleted;
         
         /// <remarks/>
-        public event getTagValueLatestCompletedEventHandler getTagValueLatestCompleted;
+        public event getTagValuesAsOfCompletedEventHandler getTagValuesAsOfCompleted;
         
         /// <remarks/>
         public event getTagValuesLatestCompletedEventHandler getTagValuesLatestCompleted;
@@ -179,6 +197,52 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://progauge.scada.com", ResponseNamespace="http://progauge.scada.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("tagAggregates", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tagAggregateItem[] getTagAggregateValues([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string equipmentName, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string tagName, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] System.DateTime startDate, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] [System.Xml.Serialization.XmlIgnoreAttribute()] bool startDateSpecified, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] System.DateTime endDate, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] [System.Xml.Serialization.XmlIgnoreAttribute()] bool endDateSpecified, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] tagAggregateResolution resolution, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] [System.Xml.Serialization.XmlIgnoreAttribute()] bool resolutionSpecified, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] bool performSlowScan) {
+            object[] results = this.Invoke("getTagAggregateValues", new object[] {
+                        equipmentName,
+                        tagName,
+                        startDate,
+                        startDateSpecified,
+                        endDate,
+                        endDateSpecified,
+                        resolution,
+                        resolutionSpecified,
+                        performSlowScan});
+            return ((tagAggregateItem[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getTagAggregateValuesAsync(string equipmentName, string tagName, System.DateTime startDate, bool startDateSpecified, System.DateTime endDate, bool endDateSpecified, tagAggregateResolution resolution, bool resolutionSpecified, bool performSlowScan) {
+            this.getTagAggregateValuesAsync(equipmentName, tagName, startDate, startDateSpecified, endDate, endDateSpecified, resolution, resolutionSpecified, performSlowScan, null);
+        }
+        
+        /// <remarks/>
+        public void getTagAggregateValuesAsync(string equipmentName, string tagName, System.DateTime startDate, bool startDateSpecified, System.DateTime endDate, bool endDateSpecified, tagAggregateResolution resolution, bool resolutionSpecified, bool performSlowScan, object userState) {
+            if ((this.getTagAggregateValuesOperationCompleted == null)) {
+                this.getTagAggregateValuesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetTagAggregateValuesOperationCompleted);
+            }
+            this.InvokeAsync("getTagAggregateValues", new object[] {
+                        equipmentName,
+                        tagName,
+                        startDate,
+                        startDateSpecified,
+                        endDate,
+                        endDateSpecified,
+                        resolution,
+                        resolutionSpecified,
+                        performSlowScan}, this.getTagAggregateValuesOperationCompleted, userState);
+        }
+        
+        private void OngetTagAggregateValuesOperationCompleted(object arg) {
+            if ((this.getTagAggregateValuesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getTagAggregateValuesCompleted(this, new getTagAggregateValuesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://progauge.scada.com", ResponseNamespace="http://progauge.scada.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("tags", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string[] getTagList([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string equipmentName) {
             object[] results = this.Invoke("getTagList", new object[] {
@@ -204,6 +268,74 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
             if ((this.getTagListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getTagListCompleted(this, new getTagListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://progauge.scada.com", ResponseNamespace="http://progauge.scada.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("tagValues", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tagItem[] getTagSetValuesAsOf([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string equipmentName, [System.Xml.Serialization.XmlElementAttribute("tagNames", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string[] tagNames, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] System.DateTime dateTime, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] [System.Xml.Serialization.XmlIgnoreAttribute()] bool dateTimeSpecified) {
+            object[] results = this.Invoke("getTagSetValuesAsOf", new object[] {
+                        equipmentName,
+                        tagNames,
+                        dateTime,
+                        dateTimeSpecified});
+            return ((tagItem[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getTagSetValuesAsOfAsync(string equipmentName, string[] tagNames, System.DateTime dateTime, bool dateTimeSpecified) {
+            this.getTagSetValuesAsOfAsync(equipmentName, tagNames, dateTime, dateTimeSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void getTagSetValuesAsOfAsync(string equipmentName, string[] tagNames, System.DateTime dateTime, bool dateTimeSpecified, object userState) {
+            if ((this.getTagSetValuesAsOfOperationCompleted == null)) {
+                this.getTagSetValuesAsOfOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetTagSetValuesAsOfOperationCompleted);
+            }
+            this.InvokeAsync("getTagSetValuesAsOf", new object[] {
+                        equipmentName,
+                        tagNames,
+                        dateTime,
+                        dateTimeSpecified}, this.getTagSetValuesAsOfOperationCompleted, userState);
+        }
+        
+        private void OngetTagSetValuesAsOfOperationCompleted(object arg) {
+            if ((this.getTagSetValuesAsOfCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getTagSetValuesAsOfCompleted(this, new getTagSetValuesAsOfCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://progauge.scada.com", ResponseNamespace="http://progauge.scada.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("tagValues", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tagItem[] getTagSetValuesLatest([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string equipmentName, [System.Xml.Serialization.XmlElementAttribute("tagNames", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string[] tagNames) {
+            object[] results = this.Invoke("getTagSetValuesLatest", new object[] {
+                        equipmentName,
+                        tagNames});
+            return ((tagItem[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getTagSetValuesLatestAsync(string equipmentName, string[] tagNames) {
+            this.getTagSetValuesLatestAsync(equipmentName, tagNames, null);
+        }
+        
+        /// <remarks/>
+        public void getTagSetValuesLatestAsync(string equipmentName, string[] tagNames, object userState) {
+            if ((this.getTagSetValuesLatestOperationCompleted == null)) {
+                this.getTagSetValuesLatestOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetTagSetValuesLatestOperationCompleted);
+            }
+            this.InvokeAsync("getTagSetValuesLatest", new object[] {
+                        equipmentName,
+                        tagNames}, this.getTagSetValuesLatestOperationCompleted, userState);
+        }
+        
+        private void OngetTagSetValuesLatestOperationCompleted(object arg) {
+            if ((this.getTagSetValuesLatestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getTagSetValuesLatestCompleted(this, new getTagSetValuesLatestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -245,6 +377,38 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://progauge.scada.com", ResponseNamespace="http://progauge.scada.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("tagValue", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tagItem getTagValueLatest([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string equipmentName, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string tagName) {
+            object[] results = this.Invoke("getTagValueLatest", new object[] {
+                        equipmentName,
+                        tagName});
+            return ((tagItem)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getTagValueLatestAsync(string equipmentName, string tagName) {
+            this.getTagValueLatestAsync(equipmentName, tagName, null);
+        }
+        
+        /// <remarks/>
+        public void getTagValueLatestAsync(string equipmentName, string tagName, object userState) {
+            if ((this.getTagValueLatestOperationCompleted == null)) {
+                this.getTagValueLatestOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetTagValueLatestOperationCompleted);
+            }
+            this.InvokeAsync("getTagValueLatest", new object[] {
+                        equipmentName,
+                        tagName}, this.getTagValueLatestOperationCompleted, userState);
+        }
+        
+        private void OngetTagValueLatestOperationCompleted(object arg) {
+            if ((this.getTagValueLatestCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getTagValueLatestCompleted(this, new getTagValueLatestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://progauge.scada.com", ResponseNamespace="http://progauge.scada.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("tagValues", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public tagItem[] getTagValuesAsOf([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string equipmentName, [System.Xml.Serialization.XmlElementAttribute("tagNames", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string[] tagNames, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] System.DateTime dateTime, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] [System.Xml.Serialization.XmlIgnoreAttribute()] bool dateTimeSpecified) {
             object[] results = this.Invoke("getTagValuesAsOf", new object[] {
@@ -276,38 +440,6 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
             if ((this.getTagValuesAsOfCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getTagValuesAsOfCompleted(this, new getTagValuesAsOfCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://progauge.scada.com", ResponseNamespace="http://progauge.scada.com", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("tagValue", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public tagItem getTagValueLatest([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string equipmentName, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string tagName) {
-            object[] results = this.Invoke("getTagValueLatest", new object[] {
-                        equipmentName,
-                        tagName});
-            return ((tagItem)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getTagValueLatestAsync(string equipmentName, string tagName) {
-            this.getTagValueLatestAsync(equipmentName, tagName, null);
-        }
-        
-        /// <remarks/>
-        public void getTagValueLatestAsync(string equipmentName, string tagName, object userState) {
-            if ((this.getTagValueLatestOperationCompleted == null)) {
-                this.getTagValueLatestOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetTagValueLatestOperationCompleted);
-            }
-            this.InvokeAsync("getTagValueLatest", new object[] {
-                        equipmentName,
-                        tagName}, this.getTagValueLatestOperationCompleted, userState);
-        }
-        
-        private void OngetTagValueLatestOperationCompleted(object arg) {
-            if ((this.getTagValueLatestCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getTagValueLatestCompleted(this, new getTagValueLatestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -387,6 +519,167 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
+    public enum tagAggregateResolution {
+        
+        /// <remarks/>
+        HOURLY,
+        
+        /// <remarks/>
+        DAILY,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
+    public partial class tagAggregateItem {
+        
+        private double averageField;
+        
+        private string equipmentNameField;
+        
+        private string nameField;
+        
+        private int pointCountField;
+        
+        private tagAggregateResolution resolutionField;
+        
+        private bool resolutionFieldSpecified;
+        
+        private double sumField;
+        
+        private System.DateTime timestampField;
+        
+        private bool timestampFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public double average {
+            get {
+                return this.averageField;
+            }
+            set {
+                this.averageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string equipmentName {
+            get {
+                return this.equipmentNameField;
+            }
+            set {
+                this.equipmentNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int pointCount {
+            get {
+                return this.pointCountField;
+            }
+            set {
+                this.pointCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tagAggregateResolution resolution {
+            get {
+                return this.resolutionField;
+            }
+            set {
+                this.resolutionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool resolutionSpecified {
+            get {
+                return this.resolutionFieldSpecified;
+            }
+            set {
+                this.resolutionFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public double sum {
+            get {
+                return this.sumField;
+            }
+            set {
+                this.sumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime timestamp {
+            get {
+                return this.timestampField;
+            }
+            set {
+                this.timestampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool timestampSpecified {
+            get {
+                return this.timestampFieldSpecified;
+            }
+            set {
+                this.timestampFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
+    public partial class getTagValueLatestResponse {
+        
+        private tagItem tagValueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tagItem tagValue {
+            get {
+                return this.tagValueField;
+            }
+            set {
+                this.tagValueField = value;
+            }
         }
     }
     
@@ -518,28 +811,6 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
-    public partial class getTagValueLatestResponse {
-        
-        private tagItem tagValueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public tagItem tagValue {
-            get {
-                return this.tagValueField;
-            }
-            set {
-                this.tagValueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
     public partial class getTagValueLatest {
         
         private string equipmentNameField;
@@ -650,7 +921,229 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
+    public partial class getTagSetValuesAsOf {
+        
+        private string equipmentNameField;
+        
+        private string[] tagNamesField;
+        
+        private System.DateTime dateTimeField;
+        
+        private bool dateTimeFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string equipmentName {
+            get {
+                return this.equipmentNameField;
+            }
+            set {
+                this.equipmentNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("tagNames", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string[] tagNames {
+            get {
+                return this.tagNamesField;
+            }
+            set {
+                this.tagNamesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime dateTime {
+            get {
+                return this.dateTimeField;
+            }
+            set {
+                this.dateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool dateTimeSpecified {
+            get {
+                return this.dateTimeFieldSpecified;
+            }
+            set {
+                this.dateTimeFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
     public partial class getTagValuesLatest {
+        
+        private string equipmentNameField;
+        
+        private string[] tagNamesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string equipmentName {
+            get {
+                return this.equipmentNameField;
+            }
+            set {
+                this.equipmentNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("tagNames", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string[] tagNames {
+            get {
+                return this.tagNamesField;
+            }
+            set {
+                this.tagNamesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
+    public partial class getTagAggregateValues {
+        
+        private string equipmentNameField;
+        
+        private string tagNameField;
+        
+        private System.DateTime startDateField;
+        
+        private bool startDateFieldSpecified;
+        
+        private System.DateTime endDateField;
+        
+        private bool endDateFieldSpecified;
+        
+        private tagAggregateResolution resolutionField;
+        
+        private bool resolutionFieldSpecified;
+        
+        private bool performSlowScanField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string equipmentName {
+            get {
+                return this.equipmentNameField;
+            }
+            set {
+                this.equipmentNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string tagName {
+            get {
+                return this.tagNameField;
+            }
+            set {
+                this.tagNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime startDate {
+            get {
+                return this.startDateField;
+            }
+            set {
+                this.startDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool startDateSpecified {
+            get {
+                return this.startDateFieldSpecified;
+            }
+            set {
+                this.startDateFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public System.DateTime endDate {
+            get {
+                return this.endDateField;
+            }
+            set {
+                this.endDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool endDateSpecified {
+            get {
+                return this.endDateFieldSpecified;
+            }
+            set {
+                this.endDateFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tagAggregateResolution resolution {
+            get {
+                return this.resolutionField;
+            }
+            set {
+                this.resolutionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool resolutionSpecified {
+            get {
+                return this.resolutionFieldSpecified;
+            }
+            set {
+                this.resolutionFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool performSlowScan {
+            get {
+                return this.performSlowScanField;
+            }
+            set {
+                this.performSlowScanField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.1")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://progauge.scada.com")]
+    public partial class getTagSetValuesLatest {
         
         private string equipmentNameField;
         
@@ -960,6 +1453,32 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void getTagAggregateValuesCompletedEventHandler(object sender, getTagAggregateValuesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getTagAggregateValuesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getTagAggregateValuesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public tagAggregateItem[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((tagAggregateItem[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
     public delegate void getTagListCompletedEventHandler(object sender, getTagListCompletedEventArgs e);
     
     /// <remarks/>
@@ -986,6 +1505,58 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void getTagSetValuesAsOfCompletedEventHandler(object sender, getTagSetValuesAsOfCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getTagSetValuesAsOfCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getTagSetValuesAsOfCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public tagItem[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((tagItem[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void getTagSetValuesLatestCompletedEventHandler(object sender, getTagSetValuesLatestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getTagSetValuesLatestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getTagSetValuesLatestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public tagItem[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((tagItem[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
     public delegate void getTagValueAsOfCompletedEventHandler(object sender, getTagValueAsOfCompletedEventArgs e);
     
     /// <remarks/>
@@ -997,6 +1568,32 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
         private object[] results;
         
         internal getTagValueAsOfCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public tagItem Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((tagItem)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void getTagValueLatestCompletedEventHandler(object sender, getTagValueLatestCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getTagValueLatestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getTagValueLatestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1032,32 +1629,6 @@ namespace ICP_Soap_Interface_Tester.ScadaSoapService {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((tagItem[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
-    public delegate void getTagValueLatestCompletedEventHandler(object sender, getTagValueLatestCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getTagValueLatestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getTagValueLatestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public tagItem Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((tagItem)(this.results[0]));
             }
         }
     }
