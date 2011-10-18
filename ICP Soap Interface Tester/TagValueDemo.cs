@@ -137,7 +137,8 @@ namespace ICP_Soap_Interface_Tester {
         private void toggleTagDataWidgets(bool enabled) {
             Action toggleAction = new Action(delegate {
                 // Toggle the tag value widgets
-                this.tagValueButton.Enabled = enabled;
+                this.tagValueLatestButton.Enabled = enabled;
+                this.tagValueAsOfButton.Enabled = enabled;
                 this.tagValueDatePicker.Enabled = enabled;
 
                 // Toggle the tag aggregate values widgets
@@ -242,9 +243,45 @@ namespace ICP_Soap_Interface_Tester {
         }
 
         /**
-         * Called when the user clicks the "Get Tag Value" button
+         * Called when the user clicks the "Get Tag Value Latest..." button
          */
-        private void tagValueButton_Click(object sender, EventArgs e) {
+        private void tagValueLatestButton_Click(object sender, EventArgs e) {
+            string equipmentName = this.equipmentList.Text;
+            string tagName = this.tagList.Text;
+
+            if (equipmentName.Trim().Length == 0) {
+                MessageBox.Show("An equipment name must be specified!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            } else if (tagName.Trim().Length == 0) {
+                MessageBox.Show("A tag name must be specified!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            this.tagTimestampTextBox.Clear();
+            this.tagDataTypeTextBox.Clear();
+            this.tagValueTextBox.Clear();
+            this.toggleState(true);
+            new Thread(new ThreadStart(delegate {
+                try {
+                    tagItem item = service.getTagValueLatest(equipmentName, tagName);
+                    if (item != null) {
+                        this.Invoke(new ThreadStart(delegate {
+                            this.tagTimestampTextBox.Text = item.timestamp.ToString("yyyy-MM-dd hh:mm:ss");
+                            this.tagDataTypeTextBox.Text = item.dataType.ToString();
+                            this.tagValueTextBox.Text = item.value.ToString();
+                        }));
+                    }
+                } catch (SoapException ex) {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                this.toggleState(false);
+            })).Start();
+        }
+
+        /**
+         * Called when the user clicks the "Get Tag Value As Of..." button
+         */
+        private void tagValueAsOfButton_Click(object sender, EventArgs e) {
             string equipmentName = this.equipmentList.Text;
             string tagName = this.tagList.Text;
             DateTime dateTime = this.tagValueDatePicker.Value;
@@ -319,7 +356,6 @@ namespace ICP_Soap_Interface_Tester {
                 this.toggleState(false);
             })).Start();
         }
-
 
     }
 }
